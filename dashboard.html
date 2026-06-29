@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Metas do Evento</title>
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #777777;
+            --color-ingressos: #4A90E2; /* Azul */
+            --color-patrocinadores: #F5A623; /* Laranja */
+            --color-parceiros: #50E3C2; /* Verde água */
+            --color-posts: #D0021B; /* Vermelho */
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c3e50;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #2c3e50;
+        }
+
+        .status-text {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        /* Container da barra de fundo */
+        .progress-bar-bg {
+            width: 100%;
+            height: 12px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Preenchimento da barra */
+        .progress-fill {
+            height: 100%;
+            width: 0%; /* O JS vai preencher isso */
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Cores individuais das barras */
+        .fill-ingressos { background-color: var(--color-ingressos); }
+        .fill-patrocinadores { background-color: var(--color-patrocinadores); }
+        .fill-parceiros { background-color: var(--color-parceiros); }
+        .fill-posts { background-color: var(--color-posts); }
+
+        .percentage {
+            text-align: right;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-top: 8px;
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Painel de Metas do Evento</h1>
+        
+        <div class="dashboard-grid">
+            
+            <!-- Card: Ingressos -->
+            <div class="card">
+                <div>
+                    <h3>Venda de Ingressos</h3>
+                    <!-- Exemplo usando a soma que calculamos anteriormente -->
+                    <div class="status-text"><span id="txt-ingressos">0</span> / 100 ingressos</div>
+                </div>
+                <div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-fill fill-ingressos" id="bar-ingressos"></div>
+                    </div>
+                    <div class="percentage" id="perc-ingressos">0%</div>
+                </div>
+            </div>
+
+            <!-- Card: Patrocinadores -->
+            <div class="card">
+                <div>
+                    <h3>Patrocinadores</h3>
+                    <div class="status-text"><span id="txt-patrocinadores">0</span> / 5 cotas</div>
+                </div>
+                <div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-fill fill-patrocinadores" id="bar-patrocinadores"></div>
+                    </div>
+                    <div class="percentage" id="perc-patrocinadores">0%</div>
+                </div>
+            </div>
+
+            <!-- Card: Parceiros -->
+            <div class="card">
+                <div>
+                    <h3>Parceiros (Apoio)</h3>
+                    <div class="status-text"><span id="txt-parceiros">0</span> / 10 parcerias</div>
+                </div>
+                <div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-fill fill-parceiros" id="bar-parceiros"></div>
+                    </div>
+                    <div class="percentage" id="perc-parceiros">0%</div>
+                </div>
+            </div>
+
+            <!-- Card: Posts de Divulgação -->
+            <div class="card">
+                <div>
+                    <h3>Posts de Divulgação</h3>
+                    <div class="status-text"><span id="txt-posts">0</span> / 20 posts</div>
+                </div>
+                <div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-fill fill-posts" id="bar-posts"></div>
+                    </div>
+                    <div class="percentage" id="perc-posts">0%</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Objeto com as suas metas e o valor atual atingido
+        // Você pode integrar isso com um banco de dados ou API futuramente
+        const dadosMetas = {
+            ingressos: { atual: 60, total: 100 },
+            patrocinadores: { atual: 2, total: 5 },
+            parceiros: { atual: 8, total: 10 },
+            posts: { atual: 15, total: 20 }
+        };
+
+        // Função para calcular a porcentagem e atualizar a interface
+        function atualizarDashboard() {
+            for (const [chave, dados] of Object.entries(dadosMetas)) {
+                // Calcula a porcentagem (limitando a 100% no máximo)
+                let porcentagem = (dados.atual / dados.total) * 100;
+                if (porcentagem > 100) porcentagem = 100;
+
+                // Atualiza o texto fracionado (ex: 60 / 100)
+                document.getElementById(`txt-${chave}`).innerText = dados.atual;
+                
+                // Anima a largura da barra de progresso
+                document.getElementById(`bar-${chave}`).style.width = `${porcentagem}%`;
+                
+                // Atualiza o texto da porcentagem (ex: 60%)
+                document.getElementById(`perc-${chave}`).innerText = `${Math.round(porcentagem)}%`;
+            }
+        }
+
+        // Executa a animação assim que a página carrega
+        window.onload = atualizarDashboard;
+    </script>
+
+</body>
+</html>
