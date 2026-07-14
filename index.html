@@ -12,10 +12,10 @@
             --accent-color: #f39c12; 
             
             /* Cores das barras do dashboard adaptadas para o fundo escuro */
-            --color-ingressos: #3498db;      
-            --color-patrocinadores: #f39c12;  
-            --color-parceiros: #9b59b6;      
-            --color-posts: #1abc9c;          
+            --color-ingressos: #316db5; /*azul    
+            --color-patrocinadores: #ffad32; /*laranja
+            --color-parceiros: #792382; /*Rosa neon     
+            --color-posts: #31826e; /*turquesa         
         }
 
         body {
@@ -140,8 +140,12 @@
 <body>
 
     <div class="container">
-         <h1>Painel de Metas do Evento</h1>
-    <div class="subtitle">Irradiation - Consultoria em Física Médica</div>
+        
+        <div class="header">
+            <!-- Puxando a logo localmente como no jogo -->
+            <h1>Painel de Metas do Evento</h1>
+            <div class="subtitle">Irradiation - Consultoria em Física Médica</div>
+        </div>
         
         <div class="dashboard-grid">
             
@@ -202,7 +206,7 @@
 
     <script>
         const dadosMetas = {
-            ingressos: { atual: 60, total: 100 },
+            ingressos: { atual: 13, total: 100 },
             patrocinadores: { atual: 5, total: 7 },
             parceiros: { atual: 2, total: 3 },
             posts: { atual: 4, total: 20 }
