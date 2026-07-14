@@ -6,23 +6,22 @@
     <title>Dashboard de Metas do Evento</title>
     <style>
         :root {
-            /* Cores puxadas da identidade visual do seu jogo */
+            /* Cores puxadas da identidade visual */
             --bg-color: #0b0b3b; 
             --text-color: #ffffff;
             --accent-color: #f39c12; 
             
-            /* Cores das barras do dashboard adaptadas para o fundo escuro */
-            --color-ingressos: #316db5;   
-            --color-patrocinadores: #ffad32; 
-            --color-parceiros: #792382;    
-            --color-posts: #31826e;       
+            /* Cores das barras do dashboard */
+            --color-ingressos: #316db5; /* azul */    
+            --color-patrocinadores: #ffad32; /* laranja */
+            --color-parceiros: #792382; /* Rosa neon */     
+            --color-posts: #31826e; /* turquesa */  
+            --color-dinheiro: #2ecc71; /* verde financeiro */       
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
-            
-            /* Puxando a imagem local exatamente como estava no seu código do jogo */
             background-image: url('Poppins Semibold - Títulos (1920 x 1810 px).png');
             background-size: cover;
             background-position: center;
@@ -34,13 +33,11 @@
             padding: 40px 20px;
         }
 
-        /* Container amplo para não esmagar no PC */
         .container {
             max-width: 1100px;
             margin: 0 auto;
         }
 
-        /* Cabeçalho com o visual do jogo */
         .header {
             text-align: center;
             margin-bottom: 40px;
@@ -50,11 +47,6 @@
             border-radius: 15px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .header img {
-            max-width: 150px;
-            margin-bottom: 15px;
         }
 
         h1 {
@@ -68,14 +60,12 @@
             color: #ccc;
         }
 
-        /* Grid do Dashboard restaurado para funcionar bem em telas grandes */
         .dashboard-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 25px;
         }
 
-        /* Cards com o efeito de vidro do jogo */
         .card {
             background: rgba(11, 11, 59, 0.85);
             backdrop-filter: blur(8px);
@@ -85,28 +75,38 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
         }
 
         .card h3 {
-            margin: 0 0 10px 0;
+            margin: 0 0 15px 0;
             font-size: 1.2rem;
             color: var(--text-color);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Linha para separar o título */
+            padding-bottom: 10px;
+        }
+
+        /* Novo agrupamento para quando houver mais de uma meta no mesmo card */
+        .progress-group {
+            margin-bottom: 25px;
+        }
+
+        .progress-group:last-child {
+            margin-bottom: 0;
         }
 
         .status-text {
             font-size: 0.95rem;
             color: #ccc;
-            margin-bottom: 20px;
+            margin-bottom: 8px;
             font-weight: 600;
         }
 
         .status-text span {
             color: var(--accent-color); 
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
-        /* Barra de progresso com o fundo translúcido do jogo */
         .progress-bar-bg {
             width: 100%;
             height: 12px;
@@ -123,16 +123,18 @@
             transition: width 1s ease-in-out;
         }
 
+        /* Classes de cores de preenchimento */
         .fill-ingressos { background-color: var(--color-ingressos); }
         .fill-patrocinadores { background-color: var(--color-patrocinadores); }
         .fill-parceiros { background-color: var(--color-parceiros); }
         .fill-posts { background-color: var(--color-posts); }
+        .fill-dinheiro { background-color: var(--color-dinheiro); } /* Cor extra para metas financeiras */
 
         .percentage {
             text-align: right;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
-            margin-top: 8px;
+            margin-top: 5px;
             color: var(--text-color);
         }
     </style>
@@ -142,45 +144,59 @@
     <div class="container">
         
         <div class="header">
-            <!-- Puxando a logo localmente como no jogo -->
             <h1>Painel de Metas do Evento</h1>
             <div class="subtitle">Irradiation - Consultoria em Física Médica</div>
         </div>
         
         <div class="dashboard-grid">
             
+            <!-- Card: Ingressos (Quantidade + Dinheiro) -->
             <div class="card">
-                <div>
-                    <h3>Venda de Ingressos</h3>
-                    <div class="status-text"><span id="txt-ingressos">0</span> / 100</div>
-                </div>
-                <div>
+                <h3>Venda de Ingressos</h3>
+                
+                <div class="progress-group">
+                    <div class="status-text">Qtd: <span id="txt-ingressos">0</span> / 100</div>
                     <div class="progress-bar-bg">
                         <div class="progress-fill fill-ingressos" id="bar-ingressos"></div>
                     </div>
                     <div class="percentage" id="perc-ingressos">0%</div>
                 </div>
+
+                <div class="progress-group">
+                    <div class="status-text">Receita: R$ <span id="txt-dinheiroIngressos">0</span> / R$ 5.000</div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-fill fill-dinheiro" id="bar-dinheiroIngressos"></div>
+                    </div>
+                    <div class="percentage" id="perc-dinheiroIngressos">0%</div>
+                </div>
             </div>
 
+            <!-- Card: Patrocinadores (Quantidade + Dinheiro) -->
             <div class="card">
-                <div>
-                    <h3>Patrocinadores</h3>
-                    <div class="status-text"><span id="txt-patrocinadores">0</span> / 7</div>
-                </div>
-                <div>
+                <h3>Patrocinadores</h3>
+                
+                <div class="progress-group">
+                    <div class="status-text">Qtd: <span id="txt-patrocinadores">0</span> / 7</div>
                     <div class="progress-bar-bg">
                         <div class="progress-fill fill-patrocinadores" id="bar-patrocinadores"></div>
                     </div>
                     <div class="percentage" id="perc-patrocinadores">0%</div>
                 </div>
+
+                <div class="progress-group">
+                    <div class="status-text">Receita: R$ <span id="txt-dinheiroPatrocinadores">0</span> / R$ 15.000</div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-fill fill-dinheiro" id="bar-dinheiroPatrocinadores"></div>
+                    </div>
+                    <div class="percentage" id="perc-dinheiroPatrocinadores">0%</div>
+                </div>
             </div>
 
+            <!-- Card: Parceiros -->
             <div class="card">
-                <div>
-                    <h3>Parceiros (Apoio)</h3>
-                    <div class="status-text"><span id="txt-parceiros">0</span> / 3</div>
-                </div>
-                <div>
+                <h3>Parceiros (Apoio)</h3>
+                <div class="progress-group">
+                    <div class="status-text">Qtd: <span id="txt-parceiros">0</span> / 3</div>
                     <div class="progress-bar-bg">
                         <div class="progress-fill fill-parceiros" id="bar-parceiros"></div>
                     </div>
@@ -188,12 +204,11 @@
                 </div>
             </div>
 
+            <!-- Card: Posts -->
             <div class="card">
-                <div>
-                    <h3>Posts de Divulgação</h3>
-                    <div class="status-text"><span id="txt-posts">0</span> / 20</div>
-                </div>
-                <div>
+                <h3>Posts de Divulgação</h3>
+                <div class="progress-group">
+                    <div class="status-text">Qtd: <span id="txt-posts">0</span> / 20</div>
                     <div class="progress-bar-bg">
                         <div class="progress-fill fill-posts" id="bar-posts"></div>
                     </div>
@@ -205,10 +220,15 @@
     </div>
 
     <script>
+        // Dados das Metas. Ajuste os totais de dinheiro conforme a sua necessidade!
         const dadosMetas = {
             ingressos: { atual: 13, total: 100 },
-            patrocinadores: { atual: 6, total: 7 },
-            parceiros: { atual: 2, total: 3 },
+            dinheiroIngressos: { atual: 260, total: 2.372,50, isMoeda: true }, 
+            
+            patrocinadores: { atual: 5, total: 7 },
+            dinheiroPatrocinadores: { atual: 1.640, total: 2.120, isMoeda: true }, 
+            
+            parceiros: { atual: 3, total: 4 },
             posts: { atual: 4, total: 20 }
         };
 
@@ -217,9 +237,23 @@
                 let porcentagem = (dados.atual / dados.total) * 100;
                 if (porcentagem > 100) porcentagem = 100;
 
-                document.getElementById(`txt-${chave}`).innerText = dados.atual;
-                document.getElementById(`bar-${chave}`).style.width = `${porcentagem}%`;
-                document.getElementById(`perc-${chave}`).innerText = `${Math.round(porcentagem)}%`;
+                let valorExibido = dados.atual;
+                
+                // Se o dado for dinheiro (isMoeda = true), formata colocando os pontos nos milhares
+                if (dados.isMoeda) {
+                    valorExibido = dados.atual.toLocaleString('pt-BR');
+                }
+
+                const txtElement = document.getElementById(`txt-${chave}`);
+                const barElement = document.getElementById(`bar-${chave}`);
+                const percElement = document.getElementById(`perc-${chave}`);
+
+                // Verifica se os elementos existem na tela antes de preencher
+                if (txtElement && barElement && percElement) {
+                    txtElement.innerText = valorExibido;
+                    barElement.style.width = `${porcentagem}%`;
+                    percElement.innerText = `${Math.round(porcentagem)}%`;
+                }
             }
         }
 
