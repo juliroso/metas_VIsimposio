@@ -148,19 +148,30 @@
         
         <div class="dashboard-grid">
             
+            <!-- CARD DE INGRESSOS ATUALIZADO PARA EXIBIR LOTES -->
             <div class="card">
                 <h3>Venda de Ingressos</h3>
                 
+                <!-- Lote 1 -->
                 <div class="progress-group">
-                    <div class="status-text">Qtd: <span id="txt-ingressos">0</span> / 100</div>
+                    <div class="status-text">Lote 1 (Esgotado): <span id="txt-ingressosLote1">0</span> / 40</div>
                     <div class="progress-bar-bg">
-                        <div class="progress-fill fill-ingressos" id="bar-ingressos"></div>
+                        <div class="progress-fill fill-ingressos" id="bar-ingressosLote1"></div>
                     </div>
-                    <div class="percentage" id="perc-ingressos">0%</div>
+                    <div class="percentage" id="perc-ingressosLote1">0%</div>
                 </div>
 
+                <!-- Lote 2 -->
                 <div class="progress-group">
-                    <!-- Ajustado o valor total no texto do HTML -->
+                    <div class="status-text">Lote 2: <span id="txt-ingressosLote2">0</span> / 20</div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-fill fill-ingressos" id="bar-ingressosLote2"></div>
+                    </div>
+                    <div class="percentage" id="perc-ingressosLote2">0%</div>
+                </div>
+
+                <!-- Receita -->
+                <div class="progress-group">
                     <div class="status-text">Receita: R$ <span id="txt-dinheiroIngressos">0</span> / R$ 1.775,50</div>
                     <div class="progress-bar-bg">
                         <div class="progress-fill fill-dinheiro" id="bar-dinheiroIngressos"></div>
@@ -216,9 +227,11 @@
     </div>
 
     <script>
-        // CORREÇÃO: Números no Javascript não podem ter ponto para milhar, e decimal usa ponto em vez de vírgula!
         const dadosMetas = {
-            ingressos: { atual: 19, total: 100 },
+            // Separação dos Ingressos
+            ingressosLote1: { atual: 19, total: 40 }, // Fechado em 100%
+            ingressosLote2: { atual: 0, total: 20 },  // Adicione suas vendas do lote 2 aqui (total ajustado para fechar os 100 originais)
+            
             dinheiroIngressos: { atual: 332.5, total: 1625, isMoeda: true }, 
             
             patrocinadores: { atual: 6, total: 7 },
