@@ -136,30 +136,30 @@
             color: var(--text-color);
         }
 
-        /* --- ESTILOS DA LISTA DE PARCEIROS (ATUALIZADO) --- */
-        .parceiros-lista {
+        /* --- ESTILOS DAS LISTAS (Parceiros e Patrocinadores) --- */
+        .parceiros-lista, .patrocinio-lista {
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .parceiros-lista h4 {
+        .parceiros-lista h4, .patrocinio-lista h4 {
             margin: 0 0 12px 0;
             font-size: 0.95rem;
             color: var(--accent-color);
             font-weight: 600;
         }
 
-        .parceiros-lista ul {
-            list-style: disc; /* Adiciona a bolinha de formatação clássica */
-            padding-left: 20px; /* Dá o recuo na margem esquerda */
+        .parceiros-lista ul, .patrocinio-lista ul {
+            list-style: disc;
+            padding-left: 20px;
             margin: 0;
         }
 
-        .parceiros-lista li {
+        .parceiros-lista li, .patrocinio-lista li {
             font-size: 0.9rem;
             color: #ccc;
-            margin-bottom: 6px; /* Espaço sutil entre os nomes */
+            margin-bottom: 6px;
         }
 
         /* ESTILOS DO BOTÃO DE LINK */
@@ -259,8 +259,7 @@
                     </div>
                     <div class="percentage" id="perc-dinheiroPatrocinadores">0%</div>
                 </div>
-            </div>
-            <div class="patrocinio-lista">
+                <div class="patrocinio-lista">
                     <h4>Patrocínios Pagos:</h4>
                     <ul>
                         <li>ÔmegaRad </li>
@@ -268,7 +267,6 @@
                         <li>SPIN</li>
                     </ul>
                 </div>
-            </div>
 
             <div class="card">
                 <h3>Parceiros (Apoio)</h3>
@@ -313,10 +311,10 @@
     <script>
         const dadosMetas = {
             ingressosLote1: { atual: 20, total: 40 },
-            ingressosLote2: { atual: 40, total: 30 }, 
+            ingressosLote2: { atual: 40, total: 35 }, 
             ingressosLote3: { atual: 33, total: 30 },
             
-            dinheiroIngressos: { atual: 2021,7, total: 1625, isMoeda: true }, 
+            dinheiroIngressos: { atual: 2021.70, total: 1625, isMoeda: true }, 
             
             patrocinadores: { atual: 7, total: 7 },
             dinheiroPatrocinadores: { atual: 900, total: 2230, isMoeda: true }, 
