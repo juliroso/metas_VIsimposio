@@ -201,10 +201,10 @@
         
         <div class="dashboard-grid">
             
+            <!-- CARD 1: INGRESSOS -->
             <div class="card">
                 <h3>Venda de Ingressos</h3>
                 
-                <!-- Lote 1 -->
                 <div class="progress-group">
                     <div class="status-text">Lote 1 (Esgotado): <span id="txt-ingressosLote1">0</span> / 40</div>
                     <div class="progress-bar-bg">
@@ -213,7 +213,6 @@
                     <div class="percentage" id="perc-ingressosLote1">0%</div>
                 </div>
 
-                <!-- Lote 2 -->
                 <div class="progress-group">
                     <div class="status-text">Lote 2: <span id="txt-ingressosLote2">0</span> / 35</div>
                     <div class="progress-bar-bg">
@@ -222,7 +221,6 @@
                     <div class="percentage" id="perc-ingressosLote2">0%</div>
                 </div>
                 
-                <!-- Lote 3 -->
                 <div class="progress-group">
                     <div class="status-text">Lote 3: <span id="txt-ingressosLote3">0</span> / 30</div>
                     <div class="progress-bar-bg">
@@ -231,7 +229,6 @@
                     <div class="percentage" id="perc-ingressosLote3">0%</div>
                 </div>
 
-                <!-- Receita -->
                 <div class="progress-group">
                     <div class="status-text">Receita: R$ <span id="txt-dinheiroIngressos">0</span> / R$ 1.625,00</div>
                     <div class="progress-bar-bg">
@@ -239,8 +236,9 @@
                     </div>
                     <div class="percentage" id="perc-dinheiroIngressos">0%</div>
                 </div>
-            </div>
+            </div> <!-- FIM CARD INGRESSOS -->
 
+            <!-- CARD 2: PATROCINADORES -->
             <div class="card">
                 <h3>Patrocinadores</h3>
                 
@@ -253,23 +251,27 @@
                 </div>
 
                 <div class="progress-group">
-                    <div class="status-text">Receita: R$ <span id="txt-dinheiroPatrocinadores">0</span> / R$ 2.120,00</div>
+                    <div class="status-text">Receita: R$ <span id="txt-dinheiroPatrocinadores">0</span> / R$ 2.230,00</div>
                     <div class="progress-bar-bg">
                         <div class="progress-fill fill-dinheiro" id="bar-dinheiroPatrocinadores"></div>
                     </div>
                     <div class="percentage" id="perc-dinheiroPatrocinadores">0%</div>
                 </div>
+                
                 <div class="patrocinio-lista">
                     <h4>Patrocínios Pagos:</h4>
                     <ul>
-                        <li>ÔmegaRad </li>
-                        <li>TABUADA </li>
+                        <li>ÔmegaRad</li>
+                        <li>TABUADA</li>
                         <li>SPIN</li>
                     </ul>
                 </div>
+            </div> <!-- FIM CARD PATROCINADORES -->
 
+            <!-- CARD 3: PARCEIROS -->
             <div class="card">
                 <h3>Parceiros (Apoio)</h3>
+                
                 <div class="progress-group">
                     <div class="status-text">Qtd: <span id="txt-parceiros">0</span> / 4</div>
                     <div class="progress-bar-bg">
@@ -277,19 +279,22 @@
                     </div>
                     <div class="percentage" id="perc-parceiros">0%</div>
                 </div>
+                
                 <div class="parceiros-lista">
                     <h4>Parcerias Fechadas:</h4>
                     <ul>
-                        <li>CAMC </li>
-                        <li>LAFISMED </li>
+                        <li>CAMC</li>
+                        <li>LAFISMED</li>
                         <li>SBRT</li>
                         <li>BeCuries</li>
                     </ul>
                 </div>
-            </div>
+            </div> <!-- FIM CARD PARCEIROS -->
 
+            <!-- CARD 4: POSTS -->
             <div class="card">
                 <h3>Posts de Divulgação</h3>
+                
                 <div class="progress-group">
                     <div class="status-text">Qtd: <span id="txt-posts">0</span> / 28</div>
                     <div class="progress-bar-bg">
@@ -297,9 +302,9 @@
                     </div>
                     <div class="percentage" id="perc-posts">0%</div>
                 </div>
-            </div>
+            </div> <!-- FIM CARD POSTS -->
 
-        </div>
+        </div> <!-- FIM GRID DASHBOARD -->
 
         <!-- BOTÃO LINKADO PARA A PÁGINA DE ACOMPANHAMENTO -->
         <div class="actions-container">
