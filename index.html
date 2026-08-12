@@ -228,6 +228,14 @@
                     </div>
                     <div class="percentage" id="perc-ingressosLote3">0%</div>
                 </div>
+                
+                <div class="progress-group">
+                    <div class="status-text">Lote 4: <span id="txt-ingressosLote3">0</span> / 15</div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-fill fill-ingressos" id="bar-ingressosLote3"></div>
+                    </div>
+                    <div class="percentage" id="perc-ingressosLote4">0%</div>
+                </div>
 
                 <div class="progress-group">
                     <div class="status-text">Receita: R$ <span id="txt-dinheiroIngressos">0</span> / R$ 1.625,00</div>
@@ -317,9 +325,10 @@
         const dadosMetas = {
             ingressosLote1: { atual: 20, total: 40 },
             ingressosLote2: { atual: 40, total: 35 }, 
-            ingressosLote3: { atual: 47, total: 30 },
+            ingressosLote3: { atual: 50, total: 30 },
+            ingressosLote4: { atual: 3, total: 15 },
             
-            dinheiroIngressos: { atual: 2377.70, total: 1625, isMoeda: true }, 
+            dinheiroIngressos: { atual: 2526.90, total: 1625, isMoeda: true }, 
             
             patrocinadores: { atual: 8, total: 7 },
             dinheiroPatrocinadores: { atual: 900, total: 2230, isMoeda: true }, 
